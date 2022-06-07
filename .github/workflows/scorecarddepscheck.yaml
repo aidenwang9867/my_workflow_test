@@ -1,0 +1,5 @@
+name: "Scorecard DepsCheck Workflow"
+on:
+  pull_request:
+    branches: [main]
+
