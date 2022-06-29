@@ -12,16 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Scorecard Dependency-Diff-in-PR Retrieval
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
       - run: |
-            ./DependencyDiffVisualizationInAction \
-              ${{github.actor}} \
-              ${{github.event.repository.name}} \
-              $GITHUB_TOKEN \
-              ${{github.sha}}
-              ${{github.event.pull_request.head.sha}} \
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            echo "abc"
         
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v1
