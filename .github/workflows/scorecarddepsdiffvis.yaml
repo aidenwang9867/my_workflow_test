@@ -17,7 +17,8 @@ jobs:
           path: main
       - run: |
             wget https://github.com/aidenwang9867/DependencyDiffVisualizationInAction/blob/v0/DependencyDiffVisualizationInAction
-            sudo ./DependencyDiffVisualizationInAction ${{github.actor}} ${{github.event.repository.name}} ${{secrets.GITHUB_TOKEN}} ${{github.sha}} ${{github.event.pull_request.head.sha}}
+            ls -a
+            ./DependencyDiffVisualizationInAction ${{github.actor}} ${{github.event.repository.name}} ${{secrets.GITHUB_TOKEN}} ${{github.sha}} ${{github.event.pull_request.head.sha}}
         
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v1
