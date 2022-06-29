@@ -19,7 +19,7 @@ jobs:
           message: |
             Hi there :wave:, Here's the dependency changes on your code commit #${github.event.pull_request.head.sha}
             ${results}
-          pr_number: ${github.event.pull_request.id}
+          pr_number: ${github.event.pull_request.number}
       - run: |
           results = ${
             ./DependencyDiffVisualizationInAction \
