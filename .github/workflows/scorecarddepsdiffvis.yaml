@@ -14,20 +14,19 @@ jobs:
       - name: Scorecard Dependency-Diff-in-PR Retrieval
         uses: actions/checkout@master
       - run: |
-          results = ${
             ./DependencyDiffVisualizationInAction \
             ${github.actor} \
             ${github.event.repository.name} \
             ${{secrets.GITHUB_TOKEN}} \
             ${github.event.pull_request.head.sha} \
             ${github.sha}
-           }
+            > results.txt
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v1
         with:
           message: |
-            Hi there :wave:, Here's the dependency changes on your code commit #${github.event.pull_request.head.sha}
-            ${results}
+            Hi there :wave:, here's the dependency changes on your code commit #${github.event.pull_request.head.sha}
+            ${echo results.txt}
           pr_number: ${github.event.pull_request.number}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
