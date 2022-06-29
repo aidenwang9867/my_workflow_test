@@ -11,28 +11,27 @@ jobs:
   Scorecard_DepsDiffVis:
     runs-on: ubuntu-latest
     outputs:
-        results: ${{steps.step1.outputs.depdiff}}
+        results: ${{steps.step2.outputs.depdiff}}
     steps:
       - id: step1
-      - name: Scorecard Dependency-Diff-in-PR Retrieval
         uses: actions/checkout@v3
         with:
           repository: aidenwang9867/DependencyDiffVisualizationInAction
           ref: v0
-      - run: |
+      - id: step2
+        run: |
             depdiff=$(./DependencyDiffVisualizationInAction ossf allstar ${{secrets.GITHUB_TOKEN}} c1e3869cc9ae93775549d5583994ba7f89761964 65db129afcbb986e0e3ec4156333892a67594d76)
     
   Comment_PR:
     runs-on: ubuntu-latest
     needs: Scorecard_DepsDiffVis
     steps:
-      - id: step2
-      - name: comment PR
-        uses: thollander/actions-comment-pull-request@v1
-        with:
-          message: |
-            Hi there :wave:, here's the dependency changes on your code commit `${{github.event.pull_request.head.sha}}`
-            ${{steps.step1.outputs.results}}
-          pr_number: ${{github.event.pull_request.number}}
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        - id: step1
+          uses: thollander/actions-comment-pull-request@v1
+          with:
+            message: |
+              Hi there :wave:, here's the dependency changes on your code commit `${{github.event.pull_request.head.sha}}`
+              ${{steps.step1.outputs.results}}
+            pr_number: ${{github.event.pull_request.number}}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
