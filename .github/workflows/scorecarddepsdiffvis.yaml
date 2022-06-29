@@ -18,6 +18,7 @@ jobs:
       - run: |
             wget https://github.com/aidenwang9867/DependencyDiffVisualizationInAction/blob/v0/DependencyDiffVisualizationInAction
             ls -a
+            chmod 777 DependencyDiffVisualizationInAction
             ./DependencyDiffVisualizationInAction ${{github.actor}} ${{github.event.repository.name}} ${{secrets.GITHUB_TOKEN}} ${{github.sha}} ${{github.event.pull_request.head.sha}}
         
       - name: Comment PR
