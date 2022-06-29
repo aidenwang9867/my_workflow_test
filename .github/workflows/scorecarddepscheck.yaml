@@ -1,5 +1,31 @@
-name: "Scorecard DepsCheck Workflow"
+
+
+name: "Scorecard DepsDiffVis"
 on:
   pull_request:
     branches: [main]
+  workflow_dispatch:
+    
 
+jobs:
+  Scorecard_DepsDiffVis:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Scorecard Dependency-diff Visualization
+        uses: actions/checkout@master
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            Hi there :wave:, Here's the dependency changes on your code commit #${github.event.pull_request.head.sha}
+            ${results}
+          pr_number: ${github.event.pull_request.id}
+      - run: |
+          results = ${
+            ./DependencyDiffVisualizationInAction \
+            ${github.actor} \
+            ${github.event.repository.name} \
+            ${{secrets.GITHUB_TOKEN}} \
+            ${github.event.pull_request.head.sha} \
+            ${github.sha}
+           }
