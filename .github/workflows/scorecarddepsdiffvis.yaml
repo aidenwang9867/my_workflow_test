@@ -10,29 +10,20 @@ on:
 jobs:
   Scorecard_DepsDiffVis:
     runs-on: ubuntu-latest
-    steps:
-      - name: Scorecard Dependency-Diff-in-PR Retrieval
-        uses: actions/checkout@v3
+    steps:        
+      - name: Scorecard Dependency-Diff-in-PR Visualization
+        uses: actions/checkout@v3, thollander/actions-comment-pull-request@v1
         with:
-          repository: aidenwang9867/DependencyDiffVisualizationInAction
-          ref: v0
-      - run: |
-            ./DependencyDiffVisualizationInAction \
-            ${{github.actor}} \
-            ${{github.event.repository.name}} \
-            ${{secrets.GITHUB_TOKEN}} \
-            ${{github.sha}} \
-            ${{github.event.pull_request.head.sha}} \
-            > results.md
-        
-      - name: Comment PR
-        uses: thollander/actions-comment-pull-request@v1
-            
-        with:
-          results: $(cat results.md)
           message: |
             Hi there :wave:, here's the dependency changes on your code commit `${{github.event.pull_request.head.sha}}`
-            ${results}
+            $(cat results.md)
           pr_number: ${{github.event.pull_request.number}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
+      - run: |
+                  ./DependencyDiffVisualizationInAction \
+                  ${{github.actor}} \
+                  ${{github.event.repository.name}} \
+                  ${{secrets.GITHUB_TOKEN}} \
+                  ${{github.sha}} \
+                  ${{github.event.pull_request.head.sha}} \
+                  > results.md
