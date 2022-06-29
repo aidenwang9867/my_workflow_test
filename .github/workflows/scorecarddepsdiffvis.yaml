@@ -26,7 +26,7 @@ jobs:
             results: $(cat results.md)
           message: |
             Hi there :wave:, here's the dependency changes on your code commit `${{github.event.pull_request.head.sha}}`
-            ${echo results.md}
+            ${results}
           pr_number: ${{github.event.pull_request.number}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
