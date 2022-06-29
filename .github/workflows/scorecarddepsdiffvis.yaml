@@ -14,9 +14,10 @@ jobs:
       - name: Scorecard Dependency-Diff-in-PR Retrieval
         uses: actions/checkout@v3
         with:
-          path: main
+          repository: aidenwang9867/DependencyDiffVisualizationInAction
+          ref: v0
       - run: |
-            ls -a
+            ls -ll
             chmod 777 DependencyDiffVisualizationInAction
             ./DependencyDiffVisualizationInAction ${{github.actor}} ${{github.event.repository.name}} ${{secrets.GITHUB_TOKEN}} ${{github.sha}} ${{github.event.pull_request.head.sha}}
         
