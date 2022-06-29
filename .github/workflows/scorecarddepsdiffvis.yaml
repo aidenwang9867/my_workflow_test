@@ -14,7 +14,7 @@ jobs:
       - name: Scorecard Dependency-Diff-in-PR Retrieval
         uses: actions/checkout@master
       - run: |
-            results = {
+            results = ${
               ./DependencyDiffVisualizationInAction \
               ${{github.actor}} \
               ${{github.event.repository.name}} \
