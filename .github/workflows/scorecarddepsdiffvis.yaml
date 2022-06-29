@@ -17,16 +17,22 @@ jobs:
           repository: aidenwang9867/DependencyDiffVisualizationInAction
           ref: v0
       - run: |
-            ls -ll
-            chmod 777 DependencyDiffVisualizationInAction
-            ./DependencyDiffVisualizationInAction ${{github.actor}} ${{github.event.repository.name}} ${{secrets.GITHUB_TOKEN}} ${{github.sha}} ${{github.event.pull_request.head.sha}}
+            results = $(
+            ./DependencyDiffVisualizationInAction \
+            ${{github.actor}} \
+            ${{github.event.repository.name}} \
+            ${{secrets.GITHUB_TOKEN}} \
+            ${{github.event.pull_request.base.sha}} \
+            ${{github.event.pull_request.head.sha}}
+            )
+            echo $results
         
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v1
         with:
           message: |
             Hi there :wave:, here's the dependency changes on your code commit `${{github.event.pull_request.head.sha}}`
-            123
+            $result
           pr_number: ${{github.event.pull_request.number}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
