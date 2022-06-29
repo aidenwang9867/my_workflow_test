@@ -17,7 +17,7 @@ jobs:
           repository: aidenwang9867/DependencyDiffVisualizationInAction
           ref: v0
       - run: |
-            ./DependencyDiffVisualizationInAction ${{github.actor}} ${{github.event.repository.name}} ${{secrets.GITHUB_TOKEN}} ${{github.sha}} ${{github.event.pull_request.head.sha}}) > results.md
+            ./DependencyDiffVisualizationInAction ${{github.actor}} ${{github.event.repository.name}} ${{secrets.GITHUB_TOKEN}} ${{github.sha}} ${{github.event.pull_request.head.sha}} > results.md
         
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v1
