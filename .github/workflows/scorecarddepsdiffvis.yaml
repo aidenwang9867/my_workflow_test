@@ -15,12 +15,7 @@ jobs:
         uses: actions/checkout@master
       - run: |
             results = $(
-              ./DependencyDiffVisualizationInAction \
-              ${{github.actor}} \
-              ${{github.event.repository.name}} \
-              ${{secrets.GITHUB_TOKEN}} \
-              ${{github.event.pull_request.head.sha}} \
-              ${{github.sha}}
+              echo "abc"
             )
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v1
