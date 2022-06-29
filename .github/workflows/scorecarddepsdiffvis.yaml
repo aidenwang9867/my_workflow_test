@@ -18,15 +18,20 @@ jobs:
           ref: v0
       - id: step2
         run: |
-            depdiff=$(./DependencyDiffVisualizationInAction ossf allstar ${{secrets.GITHUB_TOKEN}} c1e3869cc9ae93775549d5583994ba7f89761964 65db129afcbb986e0e3ec4156333892a67594d76)
-            echo "results=$depdiff" >> $GITHUB_ENV
+            depdiff=$(./DependencyDiffVisualizationInAction \
+            ossf \
+            allstar \
+            ${{secrets.GITHUB_TOKEN}} \
+            c1e3869cc9ae93775549d5583994ba7f89761964 \
+            65db129afcbb986e0e3ec4156333892a67594d76 \
+            )
+            echo $depdiff > results.md
       - id: step3
-        run: echo $depdiff
-#         uses: thollander/actions-comment-pull-request@v1
-#         with:
-#           message: |
-#             Hi there :wave:, here's the dependency changes on your code commit `${{github.event.pull_request.head.sha}}`
-#             ${{ env.results }}
-#           pr_number: ${{ github.event.pull_request.number }}
-#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            Hi there :wave:, here's the dependency changes on your code commit `${{github.event.pull_request.head.sha}}`
+            ${{ cat results.md }}
+          pr_number: ${{ github.event.pull_request.number }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
