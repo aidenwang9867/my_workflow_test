@@ -14,12 +14,12 @@ jobs:
       - name: Scorecard Dependency-Diff-in-PR Retrieval
         uses: actions/checkout@master
         with:
-          GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: |
             ./DependencyDiffVisualizationInAction \
               ${{github.actor}} \
               ${{github.event.repository.name}} \
-              GITHUB_AUTH_TOKEN \
+              GITHUB_TOKEN \
               ${{github.sha}}
               ${{github.event.pull_request.head.sha}} \
         
