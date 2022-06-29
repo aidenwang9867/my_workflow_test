@@ -13,6 +13,8 @@ jobs:
     steps:
       - name: Scorecard Dependency-Diff-in-PR Retrieval
         uses: actions/checkout@v3
+        with:
+          path: main
       - run: |
             sudo ./DependencyDiff ${{github.actor}} ${{github.event.repository.name}} ${{secrets.GITHUB_TOKEN}} ${{github.sha}} ${{github.event.pull_request.head.sha}}
         
