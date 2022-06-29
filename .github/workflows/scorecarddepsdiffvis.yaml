@@ -14,7 +14,7 @@ jobs:
       - name: Scorecard Dependency-Diff-in-PR Retrieval
         uses: actions/checkout@v3
       - run: |
-            ./DependencyDiff ${{github.actor}} ${{github.event.repository.name}} ${{secrets.GITHUB_TOKEN}} ${{github.sha}} ${{github.event.pull_request.head.sha}}
+            sudo ./DependencyDiff ${{github.actor}} ${{github.event.repository.name}} ${{secrets.GITHUB_TOKEN}} ${{github.sha}} ${{github.event.pull_request.head.sha}}
         
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v1
