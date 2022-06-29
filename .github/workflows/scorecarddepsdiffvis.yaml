@@ -15,11 +15,11 @@ jobs:
         uses: actions/checkout@master
       - run: |
             ./DependencyDiffVisualizationInAction \
-            ${github.actor} \
-            ${github.event.repository.name} \
+            ${{github.actor}} \
+            ${{github.event.repository.name}} \
             ${{secrets.GITHUB_TOKEN}} \
-            ${github.event.pull_request.head.sha} \
-            ${github.sha}
+            ${{github.event.pull_request.head.sha}} \
+            ${{github.sha}}
             > results.txt
       - name: Comment PR
         uses: thollander/actions-comment-pull-request@v1
@@ -27,6 +27,6 @@ jobs:
           message: |
             Hi there :wave:, here's the dependency changes on your code commit #${github.event.pull_request.head.sha}
             ${echo results.txt}
-          pr_number: ${github.event.pull_request.number}
+          pr_number: ${{github.event.pull_request.number}}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
