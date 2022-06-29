@@ -17,7 +17,7 @@ jobs:
           repository: aidenwang9867/DependencyDiffVisualizationInAction
           ref: v0
       - run: |
-            results = $( ./DependencyDiffVisualizationInAction ${{github.actor}} ${{github.event.repository.name}} ${{secrets.GITHUB_TOKEN}} ${{github.event.pull_request.base.sha}} ${{github.event.pull_request.head.sha}})
+            results=$(./DependencyDiffVisualizationInAction ${{github.actor}} ${{github.event.repository.name}} ${{secrets.GITHUB_TOKEN}} ${{github.event.pull_request.base.sha}} ${{github.event.pull_request.head.sha}})
             echo $results
         
       - name: Comment PR
