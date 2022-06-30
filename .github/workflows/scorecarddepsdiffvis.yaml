@@ -8,8 +8,8 @@ on:
     
 
 jobs:
-  example:
-    name: example
+  Scorecard_DepsDiffVis:
+    name: Scorecard Dependency-Diff Visualization
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
