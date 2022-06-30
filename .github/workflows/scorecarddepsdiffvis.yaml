@@ -19,11 +19,10 @@ jobs:
       - run: mkdir -p output/
       - run: |
             ./DependencyDiffVisualizationInAction \
-            aidenwang9867 \
-            my_workflow_test \
+            allstar \
             ${{secrets.GITHUB_TOKEN}} \
-            ${{ github.event.pull_request.head.sha }} \
-            c690fcc26ee51fa5b37ecdd5cf2d12a243796e3b \
+            c1e3869cc9ae93775549d5583994ba7f89761964 \
+            65db129afcbb986e0e3ec4156333892a67594d76 \
             > output/results
       - uses: actions/upload-artifact@master
         with:
