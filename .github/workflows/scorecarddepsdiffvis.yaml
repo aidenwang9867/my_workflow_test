@@ -12,14 +12,24 @@ jobs:
     name: Scorecard Dependency-Diff Visualization
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v3
+        with:
+            repository: aidenwang9867/DependencyDiffVisualizationInAction
+            ref: v0
       - run: mkdir -p output/
-      - run: echo "This is fancy a comment" > output/results.txt
-      - uses: actions/upload-artifact@v1
+      - run: |
+            ./DependencyDiffVisualizationInAction \
+            ossf \
+            allstar \
+            ${{secrets.GITHUB_TOKEN}} \
+            c1e3869cc9ae93775549d5583994ba7f89761964 \
+            65db129afcbb986e0e3ec4156333892a67594d76 \
+            > output/results.md
+      - uses: actions/upload-artifact@master
         with:
           name: results
           path: output
-      - uses: actions/download-artifact@v1
+      - uses: actions/download-artifact@master
         with:
           name: results
       - name: comment PR
