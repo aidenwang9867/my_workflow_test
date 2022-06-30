@@ -8,42 +8,23 @@ on:
     
 
 jobs:
-  Scorecard_DepsDiffVis:
+  example:
+    name: example
     runs-on: ubuntu-latest
     steps:
-        - name: get dependency diff and save as markdown
-        - uses: actions/checkout@v3
-          with:
-            repository: aidenwang9867/DependencyDiffVisualizationInAction
-            ref: v0
-        - run: |
-            ./DependencyDiffVisualizationInAction \
-            ossf \
-            allstar \
-            ${{secrets.GITHUB_TOKEN}} \
-            c1e3869cc9ae93775549d5583994ba7f89761964 \
-            65db129afcbb986e0e3ec4156333892a67594d76 \
-            > output/results.md
-        - uses: actions/upload-artifact@v1
-          with:
-            name: results.md
-            path: output
-        - uses: actions/download-artifact@v1
-          with:
-            name: results.md
-            
-        - name: comment PR 1
-        - uses: thollander/actions-comment-pull-request@v1
-          with:
-            message: |
-              Hi there :wave:, here's the dependency changes on your code commit `${{github.event.pull_request.head.sha}}`
-            pr_number: ${{ github.event.pull_request.number }}
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
-        - name: comment PR 2
-        - uses: machine-learning-apps/pr-comment@master
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            path: results/results.md
-      
+      - uses: actions/checkout@v1
+      - run: mkdir -p output/
+      - run: echo "This is fancy a comment" > output/results.txt
+      - uses: actions/upload-artifact@v1
+        with:
+          name: results
+          path: output
+      - uses: actions/download-artifact@v1
+        with:
+          name: results
+      - name: comment PR
+        uses: machine-learning-apps/pr-comment@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          path: results/results.txt
