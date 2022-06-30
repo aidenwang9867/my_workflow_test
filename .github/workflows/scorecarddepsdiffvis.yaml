@@ -19,6 +19,7 @@ jobs:
       - run: mkdir -p output/
       - run: |
             ./DependencyDiffVisualizationInAction \
+            ossf \
             allstar \
             ${{secrets.GITHUB_TOKEN}} \
             c1e3869cc9ae93775549d5583994ba7f89761964 \
