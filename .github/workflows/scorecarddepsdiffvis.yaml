@@ -41,7 +41,7 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
         - name: comment PR 2
-          uses: machine-learning-apps/pr-comment@master
+        - uses: machine-learning-apps/pr-comment@master
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           with:
