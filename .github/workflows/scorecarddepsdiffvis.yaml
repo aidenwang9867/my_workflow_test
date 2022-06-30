@@ -24,7 +24,7 @@ jobs:
             ${{secrets.GITHUB_TOKEN}} \
             c1e3869cc9ae93775549d5583994ba7f89761964 \
             65db129afcbb986e0e3ec4156333892a67594d76 \
-            > output/results.md
+            > output/results
       - uses: actions/upload-artifact@master
         with:
           name: results
@@ -44,4 +44,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          path: results/results.md
+          path: ./results
