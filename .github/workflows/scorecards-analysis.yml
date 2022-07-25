@@ -1,0 +1,29 @@
+name: Scorecards supply-chain security
+on:
+  pull_request:
+    branches: [main]
+permissions: read-all
+
+jobs:
+  analysis:
+    name: Scorecards analysis
+    runs-on: ubuntu-latest
+    permissions:
+      # Needed to upload the results to code-scanning dashboard.
+      security-events: write
+      actions: read
+      contents: read
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: "Run analysis"
+        uses: aidenwang9867/scorecard-action@main
+        with:
+          results_file: outputs.json
+          results_format: json
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          checks: License,Maintained
+          change_types: added,updated

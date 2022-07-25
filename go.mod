@@ -1,4 +1,4 @@
-module github.com/aidenwang9867/my_workflow_test
+module github.com/aidenwang9867/go_manifest_test
 
 go 1.16
 
@@ -7,9 +7,10 @@ require (
 	github.com/google/go-cmp v0.5.8
 	github.com/google/go-github/v43 v43.0.0
 	github.com/gregjones/httpcache v0.0.0-20190611155906-901d90724c79
-	github.com/ossf/scorecard/v4 v4.1.0
-	github.com/rs/zerolog v1.26.1
-	github.com/shurcooL/githubv4 v0.0.0-20210725200734-83ba7b4c9228
-	gocloud.dev v0.25.0
-	gopkg.in/yaml.v2 v2.4.0
+	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
+	golang.org/x/crypto v0.0.0-20201203163018-be400aefbc4c // indirect
+	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
+	gopkg.in/yaml.v2 v2.2.8
+	github.com/ossf/scorecard v1.2.1-0.20210722153731-89c8e2af3131
+	github.com/rs/zerolog v1.22.0
 )
