@@ -24,6 +24,6 @@ jobs:
         with:
           results_file: outputs.json
           results_format: json
-          repo_token: ${{ secrets.SCORECARD_READ_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           checks: License,Maintained
           change_types: added,updated
