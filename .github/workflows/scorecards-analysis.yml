@@ -1,0 +1,35 @@
+name: Scorecards supply-chain security
+on:
+  pull_request:
+    branches: [main]
+permissions: read-all
+
+jobs:
+  analysis:
+    name: Scorecards analysis
+    runs-on: ubuntu-latest
+    permissions:
+      # Needed to upload the results to code-scanning dashboard.
+      security-events: write
+      actions: read
+      contents: read
+    steps:
+      - name: "Checkout code"
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: "Run analysis"
+        uses: aidenwang9867/scorecard-action@4b8b90e226f598714b8d5ff6ddbab26213f37e77
+        with:
+          results_file: results.sarif
+          results_format: sarif
+          # Read-only PAT token. To create it,
+          # follow the steps in https://github.com/ossf/scorecard-action#pat-token-creation.
+          repo_token: ${{ secrets.SCORECARD_READ_TOKEN }}
+          # Publish the results to enable scorecard badges. For more details, see
+          # https://github.com/ossf/scorecard-action#publishing-results.
+          # For private repositories, `publish_results` will automatically be set to `false`,
+          # regardless of the value entered here.
+          publish_results: true
+          checks: License,Maintained
