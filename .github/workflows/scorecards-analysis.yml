@@ -22,6 +22,8 @@ jobs:
       - name: "Run analysis"
         uses: aidenwang9867/scorecard-action@main
         with:
+          results_file: outputs.json
+          results_format: json
           repo_token: ${{ secrets.SCORECARD_READ_TOKEN }}
           checks: License,Maintained
           change_types: added,updated
