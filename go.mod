@@ -1,4 +1,4 @@
-module github.com/aidenwang9867/my_workflow_test
+module github.com/aidenwang9867/go_manifest_test
 
 go 1.16
 
@@ -12,4 +12,6 @@ require (
 	golang.org/x/crypto v0.0.0-20201203163018-be400aefbc4c // indirect
 	gopkg.in/check.v1 v1.0.0-20200227125254-8fa46927fb4f // indirect
 	gopkg.in/yaml.v2 v2.2.8
+	github.com/ossf/scorecard v1.2.1-0.20210722153731-89c8e2af3131
+	github.com/rs/zerolog v1.22.0
 )
