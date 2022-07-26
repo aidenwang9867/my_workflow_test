@@ -2,17 +2,11 @@ name: Scorecards supply-chain security
 on:
   pull_request:
     branches: [main]
-permissions: write-all
-
 jobs:
   analysis:
     name: Scorecards analysis
     runs-on: ubuntu-latest
-    permissions:
-      # Needed to upload the results to code-scanning dashboard.
-      security-events: write
-      actions: read
-      contents: read
+    permissions: write-all
     steps:
       - name: "Checkout code"
         uses: actions/checkout@v3
