@@ -2,7 +2,7 @@ name: Scorecards supply-chain security
 on:
   pull_request:
     branches: [main]
-permissions: read-all
+permissions: write-all
 
 jobs:
   analysis:
