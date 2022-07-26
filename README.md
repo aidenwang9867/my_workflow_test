@@ -1,4 +1,2 @@
 # my_workflow_test
-foobar
-1123
-111
+foobar  123
