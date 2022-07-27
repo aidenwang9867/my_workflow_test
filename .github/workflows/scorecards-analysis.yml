@@ -10,8 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       security-events: write
-      # Need the write permission for actions to write to a pull request comment.
-      actions: write
+      # Need the write permission for the check to write to a pull request comment.
+      checks: write
+      actions: read
       contents: read
     steps:
       - name: "Checkout code"
