@@ -9,6 +9,8 @@ jobs:
     permissions:
       # Need the write permission to write to a pull request comment.
       pull-requests: write
+      # Need the write permission to write annotations.
+      checks: write
       actions: read
       contents: read
     steps:
