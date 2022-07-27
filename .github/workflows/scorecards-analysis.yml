@@ -8,8 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       security-events: write
-      # Need the write permission for issues to write to a pull request issue comment.
-      issues: write
+      # Need the write permission to write to a pull request comment.
+      pull-requests: write
       actions: read
       contents: read
     steps:
