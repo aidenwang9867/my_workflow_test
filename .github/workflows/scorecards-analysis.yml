@@ -29,5 +29,4 @@ jobs:
 #           change_types: added,updated,removed
     env:
       GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      GITHUB_PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
         
