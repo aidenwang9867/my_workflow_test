@@ -2,16 +2,14 @@ name: Scorecards supply-chain security
 on:
   pull_request:
     branches: [main]
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   analysis:
     name: Scorecards analysis
     runs-on: ubuntu-latest
     permissions:
       security-events: write
-      # Need the write permission for the check to write to a pull request comment.
-      checks: write
+      # Need the write permission for issues to write to a pull request issue comment.
+      issues: write
       actions: read
       contents: read
     steps:
@@ -27,4 +25,6 @@ jobs:
           results_format: json
           checks: License,Maintained
           change_types: added,updated
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
