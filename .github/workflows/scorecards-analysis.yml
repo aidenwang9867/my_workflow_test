@@ -26,7 +26,7 @@ jobs:
           results_format: json
           checks: License,Maintained
           # check all change types by default
-#           change_types: added,updated,removed
+          change_types: added,removed
     env:
       GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
