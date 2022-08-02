@@ -20,10 +20,13 @@ jobs:
           persist-credentials: false
 
       - name: "Run analysis"
-        uses: aidenwang9867/scorecard-action@depdiff_vis_p2
+        uses: aidenwang9867/scorecard-action@depdiff_vis
         with:
           results_file: outputs.json
           results_format: json
+          ## checks and change_types are for the dependency-diff Action
+          checks: Maintained,Security-Policy,License,Code-Review,SAST
+          change_types: added,removed
     env:
       GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
