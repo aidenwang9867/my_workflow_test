@@ -25,7 +25,7 @@ jobs:
           results_file: outputs.json
           results_format: json
           ## checks and change_types are for the dependency-diff Action
-          checks: Maintained,Security-Policy,License,Code-Review,SAST
+          checks: Maintained,Vulnerabilities,License
           change_types: added,removed
     env:
       GITHUB_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
